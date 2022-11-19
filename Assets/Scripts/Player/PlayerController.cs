@@ -31,15 +31,23 @@ public class PlayerController : MonoBehaviour
         {
             animator.Idle();
             _currentSpeed = speed;
-            
-            DetectObjects(10f);
+          
+            DetectObjects(15f);
         }
-        
+        else if(agent.remainingDistance < 1f)
+        {
+            StopMove();
+            animator.Idle();
+            _currentSpeed = speed;
+            
+            DetectObjects(15f);
+        }
         agent.speed = _currentSpeed;
     }
     
     public void MoveTo(Objects obj, Animations anim)
     {
+        Debug.Log("Move to " + obj);
         if(obj == Objects.None) return;
         if (!_nearObjects.Any(x => x.CompareTag($"{obj}")))
         {
@@ -102,7 +110,11 @@ public enum Objects
     None,
     Wall,
     Barrel,
-    Box
+    Container,
+    Generator,
+    Rops,
+    TrashCan,
+    WoodBox
 }
 
 public enum Animations

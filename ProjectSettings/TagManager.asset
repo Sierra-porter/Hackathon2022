@@ -4,12 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Cube
+  - Barrel
+  - WoodBox
+  - Rops
+  - TrashCan
+  - Container
+  - Generator
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Objects
   - Water
   - UI
   - 
