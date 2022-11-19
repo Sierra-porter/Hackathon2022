@@ -10,6 +10,7 @@ TagManager:
   - TrashCan
   - Container
   - Generator
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Objects
   - Water
   - UI
-  - 
+  - Walls
   - 
   - 
   - 
