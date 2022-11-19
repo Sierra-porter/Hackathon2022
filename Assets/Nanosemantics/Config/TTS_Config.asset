@@ -18,6 +18,6 @@ MonoBehaviour:
     sample_rate: 22050
     voice: Artem
     channels: 1
-    pitch: 1.12
+    pitch: 1
     end_silence_ms: 1
     secure: 1
