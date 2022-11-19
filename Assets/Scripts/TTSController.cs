@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,8 @@ using ai.nanosemantics;
 public class TTSController : MonoBehaviour
 {
     public TTS tTS;
-    [TextArea] public string text;
-    public bool readySend = false;
+    [HideInInspector] public string text;
+    [HideInInspector] public bool readySend = false;
 
 
     void Start()
@@ -26,8 +27,13 @@ public class TTSController : MonoBehaviour
         }
     }
 
+    public void sendMessage(String text) {
+		tTS.SendText(text);
+	}
+
     void TTSMessage(AudioClip clip)
     {
+		
         Debug.Log("TTS: Ready audio. Length is: " + clip.length);
     }
 }
