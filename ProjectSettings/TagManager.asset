@@ -11,6 +11,8 @@ TagManager:
   - Container
   - Generator
   - Wall
+  - Generator red
+  - Generator Blue
   layers:
   - Default
   - TransparentFX
