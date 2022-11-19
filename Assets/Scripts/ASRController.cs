@@ -8,16 +8,12 @@ public class ASRController : MonoBehaviour
     public ASR aSR;
     [HideInInspector] public bool startRecord = false;
     [HideInInspector] public bool stopRecord = false;
-    [HideInInspector] public string lastResult = "";
-    private PlayerController playerController;
-    
+    public string lastResult = "";
+
     void Start()
     {
-        aSR.OnAsrMessage += ASRMessage;
         startRecord = false;
         stopRecord = false;
-        
-        playerController = GetComponent<PlayerController>();
     }
     
     void Update()
@@ -34,67 +30,10 @@ public class ASRController : MonoBehaviour
             aSR.StopRecoring();
         }
     }
-
-    void ASRMessage(string message)
-    {
-        lastResult = message;
-        playerController.MoveTo(getObjectFromMessage(message.ToLower()), getActionFromMessage(message.ToLower()));
-        Debug.Log("ASR message: " + message);
-    }
     
-    Objects getObjectFromMessage(string message)
+    public void test()
     {
-        if (message.Contains("бочк"))
-        {
-            return Objects.Barrel;
-        }
-        else if (message.Contains("стен"))
-        {
-            return Objects.Wall;
-        }
-        else if (message.Contains("ящи"))
-        {
-            return Objects.WoodBox;
-        }
-        else if(message.Contains("верев") || message.Contains("верёв"))
-        {
-            return Objects.Rops;
-        }
-        else if (message.Contains("мусор") || message.Contains("бак") || message.Contains("бачо"))
-        {
-            return Objects.TrashCan;
-        }
-        else if (message.Contains("конте"))
-        {
-            return Objects.Container;
-        }
-        else if (message.Contains("генер"))
-        {
-            return Objects.Generator;
-        }
-        else
-        {
-            return Objects.None;
-        }
-    }
-
-    Animations getActionFromMessage(string message)
-    {
-        if (message.Contains("бег"))
-        {
-            return Animations.Run;
-        }
-        else if (message.Contains("ид"))
-        {
-            return Animations.Walk;
-        }
-        else if (message.Contains("крад"))
-        {
-            return Animations.Crouch;
-        }
-        else
-        {
-            return Animations.Crouch;
-        }
+        GameObject gameObject = GameObject.FindWithTag(Quest.targetTag);
+        Debug.Log($"{gameObject.name} is found");
     }
 }

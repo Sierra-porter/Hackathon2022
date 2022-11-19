@@ -33,7 +33,6 @@ public class TTSController : MonoBehaviour
 
     void TTSMessage(AudioClip clip)
     {
-		
-        Debug.Log("TTS: Ready audio. Length is: " + clip.length);
+        
     }
 }

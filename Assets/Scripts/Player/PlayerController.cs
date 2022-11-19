@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     
     private float _currentSpeed = 0f;
     private List<GameObject> _nearObjects = new List<GameObject>();
-    
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
             DetectObjects(15f);
         }
         agent.speed = _currentSpeed;
+    }
+
+    void test()
+    {
+        Debug.Log("test");
     }
     
     public void MoveTo(Objects obj, Animations anim)
