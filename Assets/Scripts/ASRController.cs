@@ -6,8 +6,9 @@ using ai.nanosemantics;
 public class ASRController : MonoBehaviour
 {
     public ASR aSR;
-    public bool startRecord = false;
-    public bool stopRecord = false;
+    [HideInInspector] public bool startRecord = false;
+    [HideInInspector] public bool stopRecord = false;
+    [HideInInspector] public string lastResult = "";
     private PlayerController playerController;
     
     void Start()
@@ -36,6 +37,7 @@ public class ASRController : MonoBehaviour
 
     void ASRMessage(string message)
     {
+        lastResult = message;
         playerController.MoveTo(getObjectFromMessage(message.ToLower()), getActionFromMessage(message.ToLower()));
         Debug.Log("ASR message: " + message);
     }
