@@ -7,6 +7,7 @@ public class CameraRayCast : MonoBehaviour
     Ray ray;
     RaycastHit hit;
     GameObject obj;
+    public CameraSwitchScript cameraSwitchScript;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,8 @@ public class CameraRayCast : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) &&
+                cameraSwitchScript.currentCamera.gameObject.Equals(this.gameObject))
         {
             obj = GetObjectByRaycast(ray, hit);
             if (obj.CompareTag("Cube"))

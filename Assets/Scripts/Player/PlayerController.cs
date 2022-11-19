@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.Idle();
             _currentSpeed = speed;
-            
+          
             DetectObjects(15f);
         }
         else if(agent.remainingDistance < 1f)
@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
             
             DetectObjects(15f);
         }
-
         agent.speed = _currentSpeed;
     }
     
