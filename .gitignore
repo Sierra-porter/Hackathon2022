@@ -70,3 +70,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Characters/Player/player.fbx.meta
+Assets/Characters/Player/player.fbx
+.idea/.idea.Hackathon2022/.idea/vcs.xml
+.idea/.idea.Hackathon2022/.idea/indexLayout.xml
+.idea/.idea.Hackathon2022.dir/.idea/vcs.xml
+.idea/.idea.Hackathon2022.dir/.idea/indexLayout.xml
