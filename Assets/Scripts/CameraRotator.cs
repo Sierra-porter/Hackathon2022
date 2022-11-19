@@ -8,6 +8,7 @@ public class CameraRotator : MonoBehaviour
     public float sensitivity = 3;
     private float angleHorizontal;
     private float angleVertical;
+    public CameraSwitchScript cameraSwitchScript;
 
 
     // Start is called before the first frame update
@@ -19,15 +20,19 @@ public class CameraRotator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        angleHorizontal += Input.GetAxis("Mouse X") * sensitivity;
-        angleVertical += -Input.GetAxis("Mouse Y") * sensitivity;
+        if (cameraSwitchScript.currentCamera.gameObject.Equals(this.gameObject))
+        {
+            angleHorizontal += Input.GetAxis("Mouse X") * sensitivity;
+            angleVertical += -Input.GetAxis("Mouse Y") * sensitivity;
 
-        angleVertical = Mathf.Clamp(angleVertical, -60, 60);
-        angleHorizontal = Mathf.Clamp(angleHorizontal, -60, 60);
+            angleVertical = Mathf.Clamp(angleVertical, -60, 60);
+            angleHorizontal = Mathf.Clamp(angleHorizontal, -60, 60);
 
-        Quaternion rotationY = Quaternion.AngleAxis(angleHorizontal, Vector3.up);
-        Quaternion rotationX = Quaternion.AngleAxis(angleVertical, Vector3.right);
+            Quaternion rotationY = Quaternion.AngleAxis(angleHorizontal, Vector3.up);
+            Quaternion rotationX = Quaternion.AngleAxis(angleVertical, Vector3.right);
 
-        transform.rotation = originRotation * rotationY * rotationX;
+            transform.rotation = originRotation * rotationY * rotationX;
+        }
+        
     }
 }
