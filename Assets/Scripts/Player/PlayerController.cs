@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -45,52 +46,81 @@ public class PlayerController : MonoBehaviour
         agent.speed = _currentSpeed;
     }
 
-    void test()
+    public void MoveTo()
     {
-        Debug.Log("test");
-    }
-    
-    public void MoveTo(Objects obj, Animations anim)
-    {
-        Debug.Log("Move to " + obj);
-        if(obj == Objects.None) return;
-        if (!_nearObjects.Any(x => x.CompareTag($"{obj}")))
-        {
-            Debug.Log($"No {obj} found");
-            return;
-        }
-
-        switch (anim)
-        {
-            case Animations.Walk:
-                animator.Walk(true);
-                _currentSpeed = speed;
-                break;
-            case Animations.Run:
-                animator.Run(true);
-                _currentSpeed = sprintSpeed;
-                break;
-            case Animations.Crouch:
-                animator.Crouch(true);
-                _currentSpeed = speed / 1.5f;
-                break;
-        }
-        switch(obj)
-        {
-            case Objects.Wall:
-                agent.SetDestination(_nearObjects.Find(x => x.CompareTag("Wall")).transform.position);
-                break;
-            case Objects.Barrel:
-                agent.SetDestination(_nearObjects.Find(x => x.CompareTag("Barrel")).transform.position);
-                break;
-        }
+        Debug.Log("Move to " + Quest.targetTag);
+        GameObject target = GameObject.Find(Quest.targetTag);
         
-        /*agent.transform.rotation = Quaternion.LookRotation(position - transform.position);*/
+        if (target != null)
+        {
+            agent.SetDestination(target.GetComponent<Collider>().transform.position);
+            switch (Quest.targetAnimation)
+            {
+                case "Crouch":
+                    animator.Crouch(true);
+                    break;
+                case "Run":
+                    animator.Run(true);
+                    break;
+                case "Walk":
+                    animator.Walk(true);
+                    break;
+            }
+            
+            Quest quest = GameObject.Find("Quest").GetComponent<Quest>();
+            quest.quests[quest.currentDialog].isCompleted = true;
+        }
+    }
+
+    public void KillShoot()
+    {
+        Debug.Log("Kill " + Quest.targetTag);
+        GameObject target = GameObject.Find(Quest.targetTag);
+
+        if (target != null)
+        {
+            agent.transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            target.GetComponent<Animator>().SetBool("Death", true);
+                
+            Quest quest = GameObject.Find("Quest").GetComponent<Quest>();
+            quest.quests[quest.currentDialog].isCompleted = true;
+        }
     }
 
     public void StopMove()
     {
         agent.ResetPath();
+    }
+    
+    IEnumerator KillCountDown(int sec, GameObject target)
+    {
+        yield return new WaitForSeconds(sec);
+
+        target.GetComponent<Animator>().SetBool("Death", true);
+                
+        Quest quest = GameObject.Find("Quest").GetComponent<Quest>();
+        quest.quests[quest.currentDialog].isCompleted = true;
+        /*Ray ray = new Ray(agent.transform.position + new Vector3(0, 0.9f, 0),
+            target.transform.position + new Vector3(0, 0.9f, 0));
+        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 5f);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            Debug.Log(hit.collider.gameObject.name);
+            if (hit.collider.gameObject == target)
+            {
+                target.GetComponent<Animator>().SetBool("Death", true);
+                
+                Quest quest = GameObject.Find("Quest").GetComponent<Quest>();
+                quest.quests[quest.currentDialog].isCompleted = true;
+                quest.asrController.stopRecord = true;
+            }
+            else
+            {
+                Dialog.ttsController.sendMessage("Я его не вижу!");
+            }
+        }*/
+
     }
     
     public void DetectObjects(float radius) {
@@ -108,18 +138,6 @@ public class PlayerController : MonoBehaviour
         }
         _nearObjects = _nearObjects.OrderBy(x => Vector3.Distance(x.transform.position, playerPosition)).ToList();
     }
-}
-
-public enum Objects
-{
-    None,
-    Wall,
-    Barrel,
-    Container,
-    Generator,
-    Rops,
-    TrashCan,
-    WoodBox
 }
 
 public enum Animations
