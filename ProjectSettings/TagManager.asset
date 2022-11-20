@@ -3,15 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Barrel
+  - WoodBox
+  - Rops
+  - TrashCan
+  - Container
+  - Generator
+  - Wall
+  - Generator red
+  - Generator Blue
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Objects
   - Water
   - UI
-  - 
+  - Walls
   - 
   - 
   - 
