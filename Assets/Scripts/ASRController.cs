@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using ai.nanosemantics;
 
@@ -29,11 +27,5 @@ public class ASRController : MonoBehaviour
             stopRecord = false;
             aSR.StopRecoring();
         }
-    }
-    
-    public void test()
-    {
-        GameObject gameObject = GameObject.FindWithTag(Quest.targetTag);
-        Debug.Log($"{gameObject.name} is found");
     }
 }
