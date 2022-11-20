@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,9 +11,10 @@ public class Quest : MonoBehaviour
     [SerializeField] public List<Dialog> quests = new List<Dialog>();
     public TTSController ttsController;
     public ASRController asrController;
-    private int currentDialog = 0;
+    public int currentDialog = 0;
     
-    [SerializeField] public static string targetTag;
+    public static string targetTag;
+    public static string targetAnimation;
 
     private void Start()
     {
@@ -33,6 +35,7 @@ public class Quest : MonoBehaviour
         else if(!quests[currentDialog].isStarted)
         {
             quests[currentDialog].Start();
+            //StartCoroutine(delay(quests[currentDialog].delayTime));
         }
         else if(quests[currentDialog].isStarted)
         {
@@ -40,10 +43,18 @@ public class Quest : MonoBehaviour
         }
     }
 
+
+
     public string targetTagProperty
     {
         get => targetTag;
         set => targetTag = value;
+    }
+    
+    public string targetAnimationProperty
+    {
+        get => targetAnimation;
+        set => targetAnimation = value;
     }
 }
 
@@ -55,14 +66,16 @@ public class Dialog
 
     [SerializeField] public List<String> heroReplics;
     [SerializeField] public List<Answer> playerAnswers;
-
+    [SerializeField] public int delayTime;
+    
     [HideInInspector] public bool isStarted = false;
     [HideInInspector] public bool isCompleted = false;
     
     private bool fakeAfterTalking = true;
     
-    public string targetTag;
+    [HideInInspector] public string targetTag;
 
+    
 
     public void Start()
     {
@@ -79,7 +92,7 @@ public class Dialog
             return;
         }
 
-        ttsController.tTS.OnEndSpeak = null;
+        //ttsController.tTS.OnEndSpeak = null;
         asrController.startRecord = true;
         asrController.aSR.OnAsrMessage += getMessage;
         
@@ -89,19 +102,28 @@ public class Dialog
     public void getMessage(string text)
     {
         Debug.Log($"message: {text}");
-        if(playerAnswers.Exists(x => x.answersAllies.ConvertAll(c => c.ToLower()).Any(r => r.Contains(text.ToLower()))))
+        foreach (Answer playerAnswer in playerAnswers)
         {
-            asrController.stopRecord = true;
-            UnityEvent action = playerAnswers.Find(x => x.answersAllies.ConvertAll(o => o.ToLower()).Any(r => r.Contains(text.ToLower()))).action;
+            foreach (string playerAnswerAlly in playerAnswer.answersAllies)
+            {
+                if (text.ToLower().Contains(playerAnswerAlly.ToLower()))
+                {
+                    asrController.aSR.OnAsrMessage -= getMessage;
+                    asrController.stopRecord = true;
+                    UnityEvent action = playerAnswer.action;
             
-            action?.Invoke();
-
-            isCompleted = true;
+                    action?.Invoke();
+                }
+                else
+                {
+                    asrController.aSR.OnAsrMessage -= getMessage;
+                    asrController.stopRecord = true;
+                    ttsController.sendMessage("Я не понял вас. Повторите пожалуйста.");
+                    ttsController.tTS.OnEndSpeak = StartAfterTalking;
+                }
+            }
         }
-        else
-        {
-            ttsController.sendMessage("Я не понял вас. Повторите пожалуйста.");
-        }
+        
     }
 }
 
