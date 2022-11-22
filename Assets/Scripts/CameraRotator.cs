@@ -20,7 +20,7 @@ public class CameraRotator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cameraSwitchScript.currentCamera.gameObject.Equals(this.gameObject))
+        if (CameraSwitchScript.currentCamera.gameObject.Equals(this.gameObject))
         {
             angleHorizontal += Input.GetAxis("Mouse X") * sensitivity;
             angleVertical += -Input.GetAxis("Mouse Y") * sensitivity;
@@ -33,6 +33,12 @@ public class CameraRotator : MonoBehaviour
 
             transform.rotation = originRotation * rotationY * rotationX;
         }
-        
+
+        float zoom = Input.GetAxis("Mouse ScrollWheel");
+        if (zoom != 0)
+        {
+            CameraSwitchScript.currentCamera.fieldOfView = Mathf.Clamp(CameraSwitchScript.currentCamera.fieldOfView - zoom * 10, 10, 60);
+        }
+
     }
 }
