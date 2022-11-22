@@ -7,7 +7,7 @@ public class CameraSwitchScript : MonoBehaviour
     public List<Camera> cameras;
     public KeyCode nextKey = KeyCode.RightArrow;
     public KeyCode prevKey = KeyCode.LeftArrow;
-    public Camera currentCamera;
+    public static Camera currentCamera;
     
     
     void Start()

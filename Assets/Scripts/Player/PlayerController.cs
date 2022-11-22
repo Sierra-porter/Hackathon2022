@@ -4,26 +4,27 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    
+    public Quest quest;
     
     private NavMeshAgent agent;
     private AnimatorController animator;
     public float speed = 2f;
     public float sprintSpeed = 4f;
     
-    private float _currentSpeed = 0f;
-    private List<GameObject> _nearObjects = new List<GameObject>();
+    private float currentSpeed = 0f;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<AnimatorController>();
-        DetectObjects(10f);
 
         agent.updateRotation = true;
-        _currentSpeed = speed;
+        currentSpeed = speed;
     }
     
     void Update()
@@ -31,29 +32,38 @@ public class PlayerController : MonoBehaviour
         if (!agent.hasPath)
         {
             animator.Idle();
-            _currentSpeed = speed;
-          
-            DetectObjects(15f);
+            currentSpeed = speed;
         }
-        else if(agent.remainingDistance < 1f)
+        else if(agent.remainingDistance < agent.stoppingDistance)
         {
             StopMove();
             animator.Idle();
-            _currentSpeed = speed;
+            currentSpeed = speed;
             
-            DetectObjects(15f);
+            quest.quests[quest.currentDialog].Stop();
+            StartCoroutine(quest.NextDialog(0));
         }
-        agent.speed = _currentSpeed;
+        agent.speed = currentSpeed;
+        if (agent.path.corners.Length != 0)
+        {
+            foreach (Vector3 pathCorner in agent.path.corners)
+            {
+                if (agent.path.corners.ToList().IndexOf(pathCorner) == agent.path.corners.Length - 1) return;
+                Debug.DrawLine(pathCorner, agent.path.corners[agent.path.corners.ToList().IndexOf(pathCorner) + 1],
+                    Color.red);
+            }
+        }
     }
 
     public void MoveTo()
     {
         Debug.Log("Move to " + Quest.targetTag);
         GameObject target = GameObject.Find(Quest.targetTag);
-        
+
         if (target != null)
         {
-            agent.SetDestination(target.GetComponent<Collider>().transform.position);
+            Vector3 targetPosition = target.GetComponent<Collider>().transform.position;
+            agent.SetDestination(targetPosition);
             switch (Quest.targetAnimation)
             {
                 case "Crouch":
@@ -66,9 +76,6 @@ public class PlayerController : MonoBehaviour
                     animator.Walk(true);
                     break;
             }
-            
-            Quest quest = GameObject.Find("Quest").GetComponent<Quest>();
-            quest.quests[quest.currentDialog].isCompleted = true;
         }
     }
 
@@ -81,62 +88,16 @@ public class PlayerController : MonoBehaviour
         {
             agent.transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
             target.GetComponent<Animator>().SetBool("Death", true);
-                
-            Quest quest = GameObject.Find("Quest").GetComponent<Quest>();
-            quest.quests[quest.currentDialog].isCompleted = true;
+            
+            quest.quests[quest.currentDialog].Stop();
+            StartCoroutine(quest.NextDialog(3));
+            
         }
     }
 
     public void StopMove()
     {
         agent.ResetPath();
-    }
-    
-    IEnumerator KillCountDown(int sec, GameObject target)
-    {
-        yield return new WaitForSeconds(sec);
-
-        target.GetComponent<Animator>().SetBool("Death", true);
-                
-        Quest quest = GameObject.Find("Quest").GetComponent<Quest>();
-        quest.quests[quest.currentDialog].isCompleted = true;
-        /*Ray ray = new Ray(agent.transform.position + new Vector3(0, 0.9f, 0),
-            target.transform.position + new Vector3(0, 0.9f, 0));
-        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 5f);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            Debug.Log(hit.collider.gameObject.name);
-            if (hit.collider.gameObject == target)
-            {
-                target.GetComponent<Animator>().SetBool("Death", true);
-                
-                Quest quest = GameObject.Find("Quest").GetComponent<Quest>();
-                quest.quests[quest.currentDialog].isCompleted = true;
-                quest.asrController.stopRecord = true;
-            }
-            else
-            {
-                Dialog.ttsController.sendMessage("Я его не вижу!");
-            }
-        }*/
-
-    }
-    
-    public void DetectObjects(float radius) {
-
-        Vector3 playerPosition = agent.transform.position;
-
-        var hitColliders = Physics.OverlapSphere(playerPosition, radius);
-
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.gameObject.layer == 3)
-            {
-                _nearObjects.Add(hitCollider.gameObject);
-            }
-        }
-        _nearObjects = _nearObjects.OrderBy(x => Vector3.Distance(x.transform.position, playerPosition)).ToList();
     }
 }
 

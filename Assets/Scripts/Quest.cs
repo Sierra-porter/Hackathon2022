@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using Random = System.Random;
 
 public class Quest : MonoBehaviour
@@ -11,7 +12,10 @@ public class Quest : MonoBehaviour
     [SerializeField] public List<Dialog> quests = new List<Dialog>();
     public TTSController ttsController;
     public ASRController asrController;
+    public MicController micController;
     public int currentDialog = 0;
+    public Image lastImage;
+    public List<Image> disableUI;
     
     public static string targetTag;
     public static string targetAnimation;
@@ -20,29 +24,41 @@ public class Quest : MonoBehaviour
     {
         ttsController = GetComponent<TTSController>();
         asrController = GetComponent<ASRController>();
+        micController = GetComponent<MicController>();
         
         Dialog.ttsController = ttsController;
         Dialog.asrController = asrController;
+        Dialog.micController = micController;
+        
+        StartDialog();
     }
-
-    private void Update()
+    
+    
+    public IEnumerator NextDialog(int delay)
     {
-        if(quests[currentDialog].isCompleted)
+        if (quests[currentDialog].isLast)
         {
-            if (currentDialog == quests.Count - 1) return;
-            currentDialog++;
-        }
-        else if(!quests[currentDialog].isStarted)
-        {
-            quests[currentDialog].Start();
-            //StartCoroutine(delay(quests[currentDialog].delayTime));
-        }
-        else if(quests[currentDialog].isStarted)
-        {
+            Debug.Log("end");
+            lastImage.gameObject.SetActive(true);
+            foreach (Image image in disableUI)
+            {
+                image.gameObject.SetActive(false);
+            }
             
+            yield break;
         }
+        quests[currentDialog].Stop();
+        currentDialog++;
+        
+        yield return new WaitForSeconds(delay);
+        StartDialog();
     }
 
+    public void StartDialog()
+    {
+        quests[currentDialog].Start();
+        Debug.Log("next dialog");
+    }
 
 
     public string targetTagProperty
@@ -61,27 +77,32 @@ public class Quest : MonoBehaviour
 [Serializable]
 public class Dialog
 {
-    [HideInInspector] public static TTSController ttsController;
-    [HideInInspector] public static ASRController asrController;
+    public static TTSController ttsController;
+    public static ASRController asrController;
+    public static MicController micController;
 
     [SerializeField] public List<String> heroReplics;
+    [SerializeField] public List<String> heroWorkReplics;
     [SerializeField] public List<Answer> playerAnswers;
-    [SerializeField] public int delayTime;
-    
-    [HideInInspector] public bool isStarted = false;
-    [HideInInspector] public bool isCompleted = false;
-    
-    private bool fakeAfterTalking = true;
-    
-    [HideInInspector] public string targetTag;
+    [SerializeField] public List<String> incorrectAnswersByNPC;
+    [SerializeField] public bool isLast;
 
-    
+    private bool fakeAfterTalking = true;
+
+
 
     public void Start()
     {
         ttsController.sendMessage(heroReplics[new Random().Next(heroReplics.Count)]);
-        isStarted = true;
         ttsController.tTS.OnEndSpeak = StartAfterTalking;
+        micController.blockKey = true;
+    }
+
+    public void Stop()
+    {
+        micController.blockKey = false;
+        asrController.aSR.OnAsrMessage = null;
+        ttsController.tTS.OnEndSpeak = null;
     }
 
     public void StartAfterTalking()
@@ -92,11 +113,10 @@ public class Dialog
             return;
         }
 
-        //ttsController.tTS.OnEndSpeak = null;
-        asrController.startRecord = true;
-        asrController.aSR.OnAsrMessage += getMessage;
+        ttsController.tTS.OnEndSpeak = null;
+        asrController.aSR.OnAsrMessage = getMessage;
         
-        Debug.Log("StartAfterTalking");
+        micController.blockKey = false;
     }
 
     public void getMessage(string text)
@@ -106,24 +126,31 @@ public class Dialog
         {
             foreach (string playerAnswerAlly in playerAnswer.answersAllies)
             {
-                if (text.ToLower().Contains(playerAnswerAlly.ToLower()))
+                foreach (string word in text.Split(" "))
                 {
-                    asrController.aSR.OnAsrMessage -= getMessage;
-                    asrController.stopRecord = true;
-                    UnityEvent action = playerAnswer.action;
-            
-                    action?.Invoke();
+                    int levensteinDistance = Utility.LevenshteinDistance(playerAnswerAlly.ToLower(), word.ToLower());
+                    if (levensteinDistance <= 2)
+                    {
+                        micController.blockKey = true;
+                        UnityEvent action = playerAnswer.action;
+                        ttsController.sendMessage(heroWorkReplics[new Random().Next(heroWorkReplics.Count)]);
+                        action?.Invoke();
+                        
+                        return;
+                    }
                 }
-                else
-                {
-                    asrController.aSR.OnAsrMessage -= getMessage;
-                    asrController.stopRecord = true;
-                    ttsController.sendMessage("Я не понял вас. Повторите пожалуйста.");
-                    ttsController.tTS.OnEndSpeak = StartAfterTalking;
-                }
+                
+                
             }
         }
         
+        
+        asrController.aSR.OnAsrMessage -= getMessage;
+        asrController.stopRecord();
+        
+        ttsController.sendMessage(incorrectAnswersByNPC[new Random().Next(incorrectAnswersByNPC.Count)]);
+        ttsController.tTS.OnEndSpeak = StartAfterTalking;
+
     }
 }
 

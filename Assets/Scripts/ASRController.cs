@@ -4,28 +4,15 @@ using ai.nanosemantics;
 public class ASRController : MonoBehaviour
 {
     public ASR aSR;
-    [HideInInspector] public bool startRecord = false;
-    [HideInInspector] public bool stopRecord = false;
     public string lastResult = "";
 
-    void Start()
+    public void startRecord()
     {
-        startRecord = false;
-        stopRecord = false;
+        aSR.StartRecoring();
     }
     
-    void Update()
+    public void stopRecord()
     {
-        if (startRecord)
-        {
-            startRecord = false;
-            aSR.StartRecoring();
-        }
-
-        if (stopRecord)
-        {
-            stopRecord = false;
-            aSR.StopRecoring();
-        }
+        aSR.StopRecoring();
     }
 }
