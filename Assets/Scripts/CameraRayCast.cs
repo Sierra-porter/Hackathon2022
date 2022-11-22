@@ -19,7 +19,7 @@ public class CameraRayCast : MonoBehaviour
     void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Space) &&
-                cameraSwitchScript.currentCamera.gameObject.Equals(this.gameObject))
+                CameraSwitchScript.currentCamera.gameObject.Equals(this.gameObject))
         {
             obj = GetObjectByRaycast(ray, hit);
             if (obj.CompareTag("Cube"))

@@ -1,28 +1,30 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    
+    public Quest quest;
     
     private NavMeshAgent agent;
     private AnimatorController animator;
     public float speed = 2f;
     public float sprintSpeed = 4f;
     
-    private float _currentSpeed = 0f;
-    private List<GameObject> _nearObjects = new List<GameObject>();
+    private float currentSpeed = 0f;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<AnimatorController>();
-        DetectObjects(10f);
 
         agent.updateRotation = true;
-        _currentSpeed = speed;
+        currentSpeed = speed;
     }
     
     void Update()
@@ -30,96 +32,73 @@ public class PlayerController : MonoBehaviour
         if (!agent.hasPath)
         {
             animator.Idle();
-            _currentSpeed = speed;
-          
-            DetectObjects(15f);
+            currentSpeed = speed;
         }
-        else if(agent.remainingDistance < 1f)
+        else if(agent.remainingDistance < agent.stoppingDistance)
         {
             StopMove();
             animator.Idle();
-            _currentSpeed = speed;
+            currentSpeed = speed;
             
-            DetectObjects(15f);
+            quest.quests[quest.currentDialog].Stop();
+            StartCoroutine(quest.NextDialog(0));
         }
-        agent.speed = _currentSpeed;
+        agent.speed = currentSpeed;
+        if (agent.path.corners.Length != 0)
+        {
+            foreach (Vector3 pathCorner in agent.path.corners)
+            {
+                if (agent.path.corners.ToList().IndexOf(pathCorner) == agent.path.corners.Length - 1) return;
+                Debug.DrawLine(pathCorner, agent.path.corners[agent.path.corners.ToList().IndexOf(pathCorner) + 1],
+                    Color.red);
+            }
+        }
     }
 
-    void test()
+    public void MoveTo()
     {
-        Debug.Log("test");
-    }
-    
-    public void MoveTo(Objects obj, Animations anim)
-    {
-        Debug.Log("Move to " + obj);
-        if(obj == Objects.None) return;
-        if (!_nearObjects.Any(x => x.CompareTag($"{obj}")))
-        {
-            Debug.Log($"No {obj} found");
-            return;
-        }
+        Debug.Log("Move to " + Quest.targetTag);
+        GameObject target = GameObject.Find(Quest.targetTag);
 
-        switch (anim)
+        if (target != null)
         {
-            case Animations.Walk:
-                animator.Walk(true);
-                _currentSpeed = speed;
-                break;
-            case Animations.Run:
-                animator.Run(true);
-                _currentSpeed = sprintSpeed;
-                break;
-            case Animations.Crouch:
-                animator.Crouch(true);
-                _currentSpeed = speed / 1.5f;
-                break;
+            Vector3 targetPosition = target.GetComponent<Collider>().transform.position;
+            agent.SetDestination(targetPosition);
+            switch (Quest.targetAnimation)
+            {
+                case "Crouch":
+                    animator.Crouch(true);
+                    break;
+                case "Run":
+                    animator.Run(true);
+                    break;
+                case "Walk":
+                    animator.Walk(true);
+                    break;
+            }
         }
-        switch(obj)
+    }
+
+    public void KillShoot()
+    {
+        Debug.Log("Kill " + Quest.targetTag);
+        GameObject target = GameObject.Find(Quest.targetTag);
+
+        if (target != null)
         {
-            case Objects.Wall:
-                agent.SetDestination(_nearObjects.Find(x => x.CompareTag("Wall")).transform.position);
-                break;
-            case Objects.Barrel:
-                agent.SetDestination(_nearObjects.Find(x => x.CompareTag("Barrel")).transform.position);
-                break;
+            agent.transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            target.GetComponent<Animator>().SetBool("Death", true);
+            
+            quest.quests[quest.currentDialog].Stop();
+            StartCoroutine(quest.NextDialog(3));
+            
         }
-        
-        /*agent.transform.rotation = Quaternion.LookRotation(position - transform.position);*/
     }
 
     public void StopMove()
     {
         agent.ResetPath();
     }
-    
-    public void DetectObjects(float radius) {
-
-        Vector3 playerPosition = agent.transform.position;
-
-        var hitColliders = Physics.OverlapSphere(playerPosition, radius);
-
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.gameObject.layer == 3)
-            {
-                _nearObjects.Add(hitCollider.gameObject);
-            }
-        }
-        _nearObjects = _nearObjects.OrderBy(x => Vector3.Distance(x.transform.position, playerPosition)).ToList();
-    }
-}
-
-public enum Objects
-{
-    None,
-    Wall,
-    Barrel,
-    Container,
-    Generator,
-    Rops,
-    TrashCan,
-    WoodBox
 }
 
 public enum Animations
