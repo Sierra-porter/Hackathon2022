@@ -13,10 +13,16 @@ public class Quest : MonoBehaviour
     public TTSController ttsController;
     public ASRController asrController;
     public MicController micController;
-    public int currentDialog = 0;
+    
+    // GUI
     public Image lastImage;
     public List<Image> disableUI;
     
+    // Counters
+    [HideInInspector] public int currentDialog = 0;
+    [HideInInspector] public static int nextDialog = 0;
+    
+    // target
     public static string targetTag;
     public static string targetAnimation;
 
@@ -39,6 +45,7 @@ public class Quest : MonoBehaviour
         if (quests[currentDialog].isLast)
         {
             Debug.Log("end");
+            //start end
             lastImage.gameObject.SetActive(true);
             foreach (Image image in disableUI)
             {
@@ -48,8 +55,8 @@ public class Quest : MonoBehaviour
             yield break;
         }
         quests[currentDialog].Stop();
-        currentDialog++;
-        
+        currentDialog = nextDialog;
+
         yield return new WaitForSeconds(delay);
         StartDialog();
     }
@@ -131,6 +138,8 @@ public class Dialog
                     int levensteinDistance = Utility.LevenshteinDistance(playerAnswerAlly.ToLower(), word.ToLower());
                     if (levensteinDistance <= 2)
                     {
+                        Quest.nextDialog = playerAnswer.nextDialog;
+                        
                         micController.blockKey = true;
                         UnityEvent action = playerAnswer.action;
                         ttsController.sendMessage(heroWorkReplics[new Random().Next(heroWorkReplics.Count)]);
@@ -159,4 +168,5 @@ public class Answer
 {
     [SerializeField] public List<String> answersAllies;
     [SerializeField] public UnityEvent action;
+    [SerializeField] public int nextDialog;
 }
