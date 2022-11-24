@@ -20322,7 +20322,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh667462
+  m_Name: pb_Mesh28036
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -40730,6 +40730,56 @@ PrefabInstance:
       propertyPath: quests.Array.data[7].incorrectAnswersByNPC.Array.data[2]
       value: "\u042F \u043D\u0435 \u0443\u0432\u0435\u0440\u0435\u043D, \u0447\u0442\u043E
         \u044D\u0442\u043E \u0445\u043E\u0440\u043E\u0448\u0430\u044F \u0438\u0434\u0435\u044F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019793378045258794, guid: 6e12c390b886853468c23d10f6fc184b,
+        type: 3}
+      propertyPath: quests.Array.data[0].playerAnswers.Array.data[0].nextDialog
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019793378045258794, guid: 6e12c390b886853468c23d10f6fc184b,
+        type: 3}
+      propertyPath: quests.Array.data[1].playerAnswers.Array.data[0].nextDialog
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019793378045258794, guid: 6e12c390b886853468c23d10f6fc184b,
+        type: 3}
+      propertyPath: quests.Array.data[2].playerAnswers.Array.data[0].nextDialog
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019793378045258794, guid: 6e12c390b886853468c23d10f6fc184b,
+        type: 3}
+      propertyPath: quests.Array.data[2].playerAnswers.Array.data[1].nextDialog
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019793378045258794, guid: 6e12c390b886853468c23d10f6fc184b,
+        type: 3}
+      propertyPath: quests.Array.data[3].playerAnswers.Array.data[0].nextDialog
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019793378045258794, guid: 6e12c390b886853468c23d10f6fc184b,
+        type: 3}
+      propertyPath: quests.Array.data[4].playerAnswers.Array.data[0].nextDialog
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019793378045258794, guid: 6e12c390b886853468c23d10f6fc184b,
+        type: 3}
+      propertyPath: quests.Array.data[5].playerAnswers.Array.data[0].nextDialog
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019793378045258794, guid: 6e12c390b886853468c23d10f6fc184b,
+        type: 3}
+      propertyPath: quests.Array.data[6].playerAnswers.Array.data[0].nextDialog
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019793378045258794, guid: 6e12c390b886853468c23d10f6fc184b,
+        type: 3}
+      propertyPath: quests.Array.data[7].playerAnswers.Array.data[0].nextDialog
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019793378045258794, guid: 6e12c390b886853468c23d10f6fc184b,
+        type: 3}
+      propertyPath: quests.Array.data[0].playerAnswers.Array.data[0].nextDialogIndex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7019793378045258794, guid: 6e12c390b886853468c23d10f6fc184b,
         type: 3}
