@@ -8,8 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mesh_0136Mat
-    second: {fileID: -1495815949281941313, guid: fbbcfc61746fbb548a400f92dfd1c64e,
-      type: 3}
+    second: {fileID: 2100000, guid: db7eb35339cc6e249a3b76684d621373, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
