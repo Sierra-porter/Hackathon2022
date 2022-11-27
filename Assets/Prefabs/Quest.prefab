@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7019793378045258794}
   - component: {fileID: 4085877160612869395}
   - component: {fileID: 712026102414329181}
+  - component: {fileID: 6155626487194972022}
   m_Layer: 0
   m_Name: Quest
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   quests:
   - heroReplics:
     - "\u0427\u0442\u043E \u0434\u0435\u043B\u0430\u0442\u044C?"
+    heroWorkReplics: []
     playerAnswers:
     - answersAllies:
       - "\u0411\u0435\u0433\u0438"
@@ -91,13 +93,14 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-    delayTime: 0
-    isStarted: 0
-    isCompleted: 0
-    targetTag: 
+    incorrectAnswersByNPC: []
+    isLast: 0
   ttsController: {fileID: 4085877160612869395}
   asrController: {fileID: 712026102414329181}
+  micController: {fileID: 0}
   currentDialog: 0
+  lastImage: {fileID: 0}
+  disableUI: []
 --- !u!114 &4085877160612869395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +129,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aSR: {fileID: 0}
-  startRecord: 0
-  stopRecord: 0
   lastResult: 
+--- !u!81 &6155626487194972022
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487989271950904286}
+  m_Enabled: 1
