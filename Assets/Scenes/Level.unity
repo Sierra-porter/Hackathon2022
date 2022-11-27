@@ -7099,7 +7099,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1066379129}
   - component: {fileID: 1066379128}
-  - component: {fileID: 1066379127}
   - component: {fileID: 1066379130}
   m_Layer: 0
   m_Name: Main Camera
@@ -7108,14 +7107,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1066379127
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066379126}
-  m_Enabled: 1
 --- !u!20 &1066379128
 Camera:
   m_ObjectHideFlags: 0
@@ -8282,7 +8273,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh41346
+  m_Name: pb_Mesh28098
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
