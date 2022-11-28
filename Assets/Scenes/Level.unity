@@ -27508,6 +27508,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0014932749
       objectReference: {fileID: 0}
+    - target: {fileID: 2001784934174979505, guid: 75907b9b317e3cc4695058fcde9d57ff,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: b16dbd290caa8a1499608d850994bef2, type: 3}
     - target: {fileID: 2120771451376986276, guid: 75907b9b317e3cc4695058fcde9d57ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28018,6 +28023,24 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.0009490102
       objectReference: {fileID: 0}
+    - target: {fileID: 5023354268027593740, guid: 75907b9b317e3cc4695058fcde9d57ff,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 8341161198671653776, guid: b16dbd290caa8a1499608d850994bef2,
+        type: 3}
+    - target: {fileID: 5023354268027593740, guid: 75907b9b317e3cc4695058fcde9d57ff,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 527168955542430648, guid: b16dbd290caa8a1499608d850994bef2,
+        type: 3}
+    - target: {fileID: 5023354268027593740, guid: 75907b9b317e3cc4695058fcde9d57ff,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -1495815949281941313, guid: b16dbd290caa8a1499608d850994bef2,
+        type: 3}
     - target: {fileID: 5074493220280857969, guid: 75907b9b317e3cc4695058fcde9d57ff,
         type: 3}
       propertyPath: m_Name
