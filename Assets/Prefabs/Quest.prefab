@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4085877160612869395}
   - component: {fileID: 712026102414329181}
   - component: {fileID: 6155626487194972022}
+  - component: {fileID: 5334011157487409906}
   m_Layer: 0
   m_Name: Quest
   m_TagString: Untagged
@@ -93,14 +94,15 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+      nextDialog: 0
     incorrectAnswersByNPC: []
     isLast: 0
   ttsController: {fileID: 4085877160612869395}
   asrController: {fileID: 712026102414329181}
   micController: {fileID: 0}
-  currentDialog: 0
   lastImage: {fileID: 0}
   disableUI: []
+  currentDialog: 0
 --- !u!114 &4085877160612869395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +140,21 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487989271950904286}
   m_Enabled: 1
+--- !u!114 &5334011157487409906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487989271950904286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cee0058cc5cfb0458293ce8ff5a01f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asrController: {fileID: 712026102414329181}
+  blockKey: 1
+  keyToPress: 32
+  isMute: 1
+  active: {fileID: 0}
+  mute: {fileID: 0}
