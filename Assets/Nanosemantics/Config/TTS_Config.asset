@@ -16,8 +16,8 @@ MonoBehaviour:
     address: tts.nanosemantics.ai:443
     token: g1yXVC^PPZ^E0%bjPnm8p39JzS$Y1%@ZGHcR$FY9
     sample_rate: 22050
-    voice: Artem
+    voice: Natasha
     channels: 1
-    pitch: 1
+    pitch: 1.1
     end_silence_ms: 1
     secure: 1
