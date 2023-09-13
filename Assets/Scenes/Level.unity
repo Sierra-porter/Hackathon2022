@@ -227,6 +227,11 @@ PrefabInstance:
       propertyPath: cameras.Array.data[3]
       value: 
       objectReference: {fileID: 2054412305}
+    - target: {fileID: 3518746029575635435, guid: 0773e816c60b21941b590717b5017f63,
+        type: 3}
+      propertyPath: cameras.Array.data[4]
+      value: 
+      objectReference: {fileID: 2054412305}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0773e816c60b21941b590717b5017f63, type: 3}
 --- !u!114 &14581830 stripped
