@@ -308,7 +308,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-219304
+  m_Name: pb_Mesh-2900
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -898,7 +898,7 @@ PrefabInstance:
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2075
+      value: 2078
       objectReference: {fileID: 0}
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
@@ -2085,7 +2085,7 @@ PrefabInstance:
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2035
+      value: 2038
       objectReference: {fileID: 0}
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
@@ -2840,7 +2840,7 @@ PrefabInstance:
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2174
+      value: 2177
       objectReference: {fileID: 0}
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
@@ -3579,7 +3579,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-218996
+  m_Name: pb_Mesh-2552
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4081,7 +4081,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2950739673331529897, guid: 7d6d2305e1aafa54ab521e579df2b859, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7d6d2305e1aafa54ab521e579df2b859, type: 3}
 --- !u!20 &530202693 stripped
 Camera:
@@ -4107,7 +4108,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-220186
+  m_Name: pb_Mesh-4046
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4988,7 +4989,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-217972
+  m_Name: pb_Mesh-1334
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5226,7 +5227,7 @@ PrefabInstance:
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2267
+      value: 2270
       objectReference: {fileID: 0}
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
@@ -6048,7 +6049,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-219642
+  m_Name: pb_Mesh-3246
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6346,7 +6347,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2950739673331529897, guid: 7d6d2305e1aafa54ab521e579df2b859, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7d6d2305e1aafa54ab521e579df2b859, type: 3}
 --- !u!20 &845237998 stripped
 Camera:
@@ -6441,7 +6443,7 @@ PrefabInstance:
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 1688
+      value: 1691
       objectReference: {fileID: 0}
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
@@ -7237,7 +7239,7 @@ PrefabInstance:
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 1767
+      value: 1770
       objectReference: {fileID: 0}
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
@@ -7762,7 +7764,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-219746
+  m_Name: pb_Mesh-3400
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8067,6 +8069,7 @@ GameObject:
   - component: {fileID: 1066379129}
   - component: {fileID: 1066379128}
   - component: {fileID: 1066379130}
+  - component: {fileID: 1066379131}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8165,6 +8168,14 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!81 &1066379131
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066379126}
+  m_Enabled: 1
 --- !u!1001 &1102530276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8252,7 +8263,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-219734
+  m_Name: pb_Mesh-3388
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9703,7 +9714,7 @@ PrefabInstance:
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2320
+      value: 2323
       objectReference: {fileID: 0}
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
@@ -10457,6 +10468,11 @@ PrefabInstance:
       objectReference: {fileID: 1040271852}
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
+      propertyPath: m_VersionIndex
+      value: 1567
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
+        type: 3}
       propertyPath: m_SelectedEdges.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -10659,7 +10675,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-218018
+  m_Name: pb_Mesh-1444
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11253,7 +11269,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-220090
+  m_Name: pb_Mesh-3768
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11491,7 +11507,7 @@ PrefabInstance:
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2202
+      value: 2205
       objectReference: {fileID: 0}
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
@@ -12243,7 +12259,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2950739673331529897, guid: 7d6d2305e1aafa54ab521e579df2b859, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7d6d2305e1aafa54ab521e579df2b859, type: 3}
 --- !u!20 &1679265139 stripped
 Camera:
@@ -13752,7 +13769,7 @@ PrefabInstance:
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2202
+      value: 2205
       objectReference: {fileID: 0}
     - target: {fileID: 6211673567730454762, guid: 96d741e1f78f64e5eb12e44003d33794,
         type: 3}
@@ -14944,7 +14961,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-218006
+  m_Name: pb_Mesh-1432
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
