@@ -1767,16 +1767,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6581155398559939030, guid: ab4dd1616f317b84ebc033453a7f03c3,
         type: 3}
-      propertyPath: m_Range
-      value: 23.407095
-      objectReference: {fileID: 0}
-    - target: {fileID: 6581155398559939030, guid: ab4dd1616f317b84ebc033453a7f03c3,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 6581155398559939030, guid: ab4dd1616f317b84ebc033453a7f03c3,
-        type: 3}
       propertyPath: m_SpotAngle
       value: 103.75063
       objectReference: {fileID: 0}
