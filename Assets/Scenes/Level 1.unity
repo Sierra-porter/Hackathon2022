@@ -15513,31 +15513,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: 8401488845651156822, guid: cd7786b2ff55c5d48906f40024bc1558,
-        type: 3}
-      propertyPath: m_Range
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8401488845651156822, guid: cd7786b2ff55c5d48906f40024bc1558,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.5801887
-      objectReference: {fileID: 0}
-    - target: {fileID: 8401488845651156822, guid: cd7786b2ff55c5d48906f40024bc1558,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8401488845651156822, guid: cd7786b2ff55c5d48906f40024bc1558,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.97405267
-      objectReference: {fileID: 0}
-    - target: {fileID: 8401488845651156822, guid: cd7786b2ff55c5d48906f40024bc1558,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8401488845651156823, guid: cd7786b2ff55c5d48906f40024bc1558,
         type: 3}
       propertyPath: m_LocalRotation.w
