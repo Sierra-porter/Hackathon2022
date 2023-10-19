@@ -13,6 +13,8 @@ TagManager:
   - Wall
   - Generator red
   - Generator Blue
+  - Camera
+  - Dumpster
   layers:
   - Default
   - TransparentFX
